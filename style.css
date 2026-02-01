@@ -649,11 +649,12 @@ body {
   font-weight: 800;
 }
 
-.checkout-btn {
+.checkout-btn,
+.submit-btn {
   width: 100%;
   padding: 16px;
-  background: var(--primary);
-  color: var(--white);
+  background: var(--accent);
+  color: white;
   border: none;
   border-radius: var(--border-radius-md);
   font-weight: 700;
@@ -662,8 +663,9 @@ body {
   transition: var(--transition);
 }
 
-.checkout-btn:hover {
-  background: var(--accent);
+.checkout-btn:hover,
+.submit-btn:hover {
+  background: var(--accent-hover);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -1077,21 +1079,7 @@ input[type="number"] {
   border: 1px solid #ccc;
 }
 
-.submit-btn {
-  width: 100%;
-  padding: 12px;
-  background-color: var(--secondary-color);
-  color: white;
-  border: none;
-  font-size: var(--font-size-m);
-  border-radius: var(--border-radius-m);
-  cursor: pointer;
-  transition: background 0.3s;
-}
 
-.submit-btn:hover {
-  background-color: #e07a12;
-}
 
 /* === Success Popup === */
 .popup {
