@@ -1,4 +1,8 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || []
+let currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
+
+// User Management
+const users = JSON.parse(localStorage.getItem("users")) || [];
 
 // Theme Management
 const initTheme = () => {
@@ -313,6 +317,132 @@ function removefromcart(productid) {
 let paymentModal, closePaymentModal, checkoutBtn, successPopup;
 
 function setupEventListeners() {
+  // Auth Elements
+  const authModal = document.getElementById('authModal');
+  const accountBtn = document.getElementById('account-btn');
+  const closeAuthModal = document.getElementById('closeAuthModal');
+  const tabLogin = document.getElementById('tab-login');
+  const tabSignup = document.getElementById('tab-signup');
+  const loginForm = document.getElementById('loginForm');
+  const signupForm = document.getElementById('signupForm');
+  const logoutBtn = document.getElementById('logout-btn');
+  const userStatusText = document.getElementById('user-status-text');
+
+  // Initial UI Setup for Auth
+  const updateAuthUI = () => {
+    if (currentUser) {
+      userStatusText.classList.add('online');
+      document.getElementById('display-name').textContent = currentUser.name;
+      document.getElementById('display-email').textContent = currentUser.email;
+    } else {
+      userStatusText.classList.remove('online');
+    }
+  };
+  updateAuthUI();
+
+  if (accountBtn) {
+    accountBtn.addEventListener('click', () => {
+      if (currentUser) {
+        // Show profile
+        loginForm.classList.remove('active');
+        signupForm.classList.remove('active');
+        document.getElementById('user-profile').style.display = 'block';
+        document.querySelector('.auth-tabs').style.display = 'none';
+      } else {
+        // Show login by default
+        document.getElementById('user-profile').style.display = 'none';
+        document.querySelector('.auth-tabs').style.display = 'flex';
+        tabLogin.click();
+      }
+      authModal.style.display = 'flex';
+    });
+  }
+
+  if (closeAuthModal) {
+    closeAuthModal.addEventListener('click', () => authModal.style.display = 'none');
+  }
+
+  // Tab Switching
+  if (tabLogin && tabSignup) {
+    tabLogin.addEventListener('click', () => {
+      tabLogin.classList.add('active');
+      tabSignup.classList.remove('active');
+      loginForm.classList.add('active');
+      signupForm.classList.remove('active');
+    });
+
+    tabSignup.addEventListener('click', () => {
+      tabSignup.classList.add('active');
+      tabLogin.classList.remove('active');
+      signupForm.classList.add('active');
+      loginForm.classList.remove('active');
+    });
+  }
+
+  // Login Submission
+  if (loginForm) {
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const pass = document.getElementById('login-password').value;
+
+      const user = users.find(u => u.email === email && u.password === pass);
+      if (user) {
+        currentUser = user;
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        updateAuthUI();
+        authModal.style.display = 'none';
+        showToast(`Welcome back, ${user.name}!`);
+      } else {
+        showToast("Invalid email or password", "danger");
+      }
+    });
+  }
+
+  // Signup Submission
+  if (signupForm) {
+    signupForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('signup-name').value;
+      const email = document.getElementById('signup-email').value;
+      const pass = document.getElementById('signup-password').value;
+
+      if (users.find(u => u.email === email)) {
+        showToast("Email already registered", "danger");
+        return;
+      }
+
+      const newUser = { name, email, password: pass };
+      users.push(newUser);
+      localStorage.setItem('users', JSON.stringify(users));
+
+      currentUser = newUser;
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+      updateAuthUI();
+      authModal.style.display = 'none';
+      showToast("Account created successfully!");
+    });
+  }
+
+  // Logout
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      currentUser = null;
+      localStorage.removeItem('currentUser');
+      updateAuthUI();
+      authModal.style.display = 'none';
+      showToast("Logged out successfully", "info");
+    });
+  }
+
+  // Close on outside click
+  window.addEventListener('click', (e) => {
+    if (e.target === authModal) authModal.style.display = 'none';
+    if (e.target === paymentModal) paymentModal.style.display = 'none';
+    if (e.target === document.getElementById('addSuccessPopup')) closeAddPopup();
+  });
+
   // Menu IDs are checked to prevent null pointer errors
   const cartBtn = document.getElementById("cart-btn");
   const cartClose = document.getElementById("closes");
