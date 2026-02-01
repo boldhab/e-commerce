@@ -1,5 +1,12 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || []
 
+// Theme Management
+const initTheme = () => {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+};
+initTheme();
+
 // Product Data
 const products = [
   {
@@ -310,6 +317,7 @@ function setupEventListeners() {
   const cartBtn = document.getElementById("cart-btn");
   const cartClose = document.getElementById("closes");
   const menuToggle = document.getElementById("open");
+  const themeToggle = document.getElementById("theme-toggle");
   const searchInput = document.getElementById('search-input');
   const sortSelect = document.getElementById('sort-select');
   const catButtons = document.querySelectorAll('.cat-btn');
@@ -326,6 +334,16 @@ function setupEventListeners() {
 
   if (menuToggle) {
     menuToggle.addEventListener("click", () => document.body.classList.toggle("show-mobile-menu"));
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      showToast(`${newTheme.charAt(0).toUpperCase() + newTheme.slice(1)} mode enabled`, 'info');
+    });
   }
 
   if (searchInput) {
