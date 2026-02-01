@@ -187,6 +187,7 @@ let currentSort = 'default';
 // Initialize products display with filtering and sorting
 function renderProducts() {
   const container = document.getElementById("product-container");
+  if (!container) return; // Exit if not on index.html
   container.innerHTML = '';
 
   let filtered = products.filter(p => {
@@ -332,8 +333,10 @@ function setupEventListeners() {
   const updateAuthUI = () => {
     if (currentUser) {
       userStatusText.classList.add('online');
-      document.getElementById('display-name').textContent = currentUser.name;
-      document.getElementById('display-email').textContent = currentUser.email;
+      const dName = document.getElementById('display-name');
+      const dEmail = document.getElementById('display-email');
+      if (dName) dName.textContent = currentUser.name;
+      if (dEmail) dEmail.textContent = currentUser.email;
     } else {
       userStatusText.classList.remove('online');
     }
