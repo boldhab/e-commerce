@@ -178,6 +178,19 @@
       </div>
     </div>
 
+    <!-- Added to Cart Success Popup -->
+    <div class="popup" id="addSuccessPopup">
+      <div class="popup-content">
+        <div class="success-icon">✓</div>
+        <h3>Added to Cart!</h3>
+        <p id="addedItemName" style="margin-bottom: 20px; color: var(--text-muted);"></p>
+        <div class="popup-actions" style="display: flex; gap: 10px; justify-content: center;">
+          <button class="btn btn-outline" onclick="closeAddPopup()">Continue</button>
+          <button class="btn btn-primary" onclick="viewCart()">View Cart</button>
+        </div>
+      </div>
+    </div>
+
     <!-- Success Popup -->
     <div class="popup" id="successPopup">
       <div class="popup-content">

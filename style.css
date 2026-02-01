@@ -699,6 +699,85 @@ body {
 
 }
 
+/* === Mobile Menu Styles === */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2001;
+}
+
+.menu-toggle span {
+  width: 100%;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 3px;
+  transition: var(--transition);
+}
+
+body.show-mobile-menu .nav-actions {
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--white);
+  flex-direction: column;
+  padding: 100px 40px;
+  box-shadow: var(--shadow-lg);
+  z-index: 1001;
+}
+
+body.show-mobile-menu::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+}
+
+body.show-mobile-menu .menu-toggle span:nth-child(1) {
+  transform: translateY(8.5px) rotate(45deg);
+}
+
+body.show-mobile-menu .menu-toggle span:nth-child(2) {
+  transform: translateY(-8.5px) rotate(-45deg);
+}
+
+.empty-cart-msg,
+.no-products {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-muted);
+  font-weight: 600;
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 900px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-actions {
+    display: none;
+  }
+
+  .search-wrapper {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
 @media screen and (max-width:640px) {
   .product-container {
     gap: 10px;
@@ -718,7 +797,27 @@ body {
   }
 }
 
-/* === Payment Modal === */
+.success-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin: 0 auto 20px;
+  box-shadow: var(--shadow-md);
+}
+
+.popup-content h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+
 .modal {
   display: none;
   position: fixed;

@@ -1,181 +1,154 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || []
 
-products = [
-
+// Product Data
+const products = [
   {
     id: 1,
     name: "Wireless Headphones",
-    description: "this is good product to use ",
+    description: "Premium sound experience with active noise cancellation.",
     price: 199,
-    catagory: "electronics",
+    category: "electronics",
     image: "./assets/electronics/headphone.png"
-
   },
   {
     id: 2,
     name: "Macbook Pc",
-    description: "this is good product to use ",
-    price: 199,
-    catagory: "electronics",
+    description: "High-performance laptop for professionals and creatives.",
+    price: 1299,
+    category: "electronics",
     image: "./assets/electronics/macbook.png"
-
   },
   {
     id: 3,
     name: "Speakers",
-    description: "this is good product to use ",
-    price: 199,
-    catagory: "electronics",
+    description: "Deep bass and crystal clear audio for your home studio.",
+    price: 89,
+    category: "electronics",
     image: "./assets/electronics/speaker.png"
-
   },
   {
     id: 4,
     name: "Watch",
-    description: "this is good product to use ",
-    price: 199,
-    catagory: "electronics",
+    description: "Elegant smartwatch with fitness tracking and notifications.",
+    price: 249,
+    category: "electronics",
     image: "./assets/electronics/watch.png"
-
   },
   {
     id: 5,
     name: "Vr",
-    description: "this is good product to use ",
-    price: 199,
-    catagory: "electronics",
+    description: "Immersive virtual reality headset for next-gen gaming.",
+    price: 399,
+    category: "electronics",
     image: "./assets/electronics/vr.png"
-
   },
-  //fasions
   {
     id: 6,
-    name: "Cotten jacket",
-    description: "this is good product to use ",
-    price: 199,
-    catagory: "fashions",
+    name: "Cotton Jacket",
+    description: "Lightweight and stylish jacket perfect for autumn.",
+    price: 75,
+    category: "fashion",
     image: "./assets/fashion/product-2.png"
-
   },
   {
     id: 7,
     name: "T-shirt",
-    description: "this is good product to use ",
-    price: 199,
-    catagory: "fashions",
+    description: "Soft organic cotton t-shirt in classic white.",
+    price: 25,
+    category: "fashion",
     image: "./assets/fashion/product-3.png"
-
   },
-
   {
     id: 8,
-    name: "women jacket",
-    description: "this is good product to use ",
-    price: 199,
-    catagory: "fashions",
+    name: "Women Jacket",
+    description: "Tailored fit windbreaker for adventurous women.",
+    price: 85,
+    category: "fashion",
     image: "./assets/fashion/product-4.png"
-
   },
-
   {
     id: 9,
     name: "Jacket",
-    description: "this is good product to use ",
-    price: 199,
-    catagory: "fashions",
+    description: "Durable denim jacket with a modern vintage wash.",
+    price: 95,
+    category: "fashion",
     image: "./assets/fashion/product-5.png"
-
   },
-
   {
     id: 10,
-    name: "Adidas sport coat",
-    description: "this is good product to use ",
-    price: 199,
-    catagory: "fashions",
+    name: "Sport Coat",
+    description: "Breathable athletic coat for outdoor running.",
+    price: 65,
+    category: "fashion",
     image: "./assets/fashion/product-6.png"
-
   },
-
   {
     id: 11,
-    name: "cotten sweeter",
-    description: "this is good product to use ",
-    price: 199,
-    catagory: "fashions",
+    name: "Cotton Sweater",
+    description: "Cozy knit sweater for those chilly evenings.",
+    price: 45,
+    category: "fashion",
     image: "./assets/fashion/slide-2.png"
-
-  },
-  //home
-  {
-    id: 11,
-    name: "Sofa",
-    description: "this is good product to use ",
-    price: 199,
-    catagory: "home",
-    image: "./assets/home/home1.jpg"
-
   },
   {
     id: 12,
-    name: "Home light",
-    description: "this is good product to use ",
-    price: 199,
-    catagory: "home",
-    image: "./assets/home/home2.jpg"
-
+    name: "Premium Sofa",
+    description: "Luxury velvet sofa with ergonomic support.",
+    price: 899,
+    category: "home",
+    image: "./assets/home/home1.jpg"
   },
   {
     id: 13,
-    name: "Book shelf",
-    description: "this is good product to use ",
-    price: 199,
-    catagory: "home",
-    image: "./assets/home/home3.jpg"
-
+    name: "Designer Light",
+    description: "Modern pendant light for a minimalist aesthetic.",
+    price: 120,
+    category: "home",
+    image: "./assets/home/home2.jpg"
   },
   {
     id: 14,
-    name: "Chair",
-    description: "this is good product to use ",
-    price: 199,
-    catagory: "home",
-    image: "./assets/home/home4.jpg"
-
+    name: "Book Shelf",
+    description: "Sturdy wooden bookshelf with adjustable levels.",
+    price: 150,
+    category: "home",
+    image: "./assets/home/home3.jpg"
   },
   {
     id: 15,
-    name: "Bed",
-    description: "this is good product to use ",
-    price: 199,
-    catagory: "home",
-    image: "./assets/home/home5.jpg"
-
+    name: "Ergonomic Chair",
+    description: "Comfortable office chair with lumbar support.",
+    price: 210,
+    category: "home",
+    image: "./assets/home/home4.jpg"
   },
-
-  // sports
   {
     id: 16,
-    name: "shoes",
-    description: "this is good product to use ",
-    price: 199,
-    catagory: "sports",
-    image: "./assets/sports/shoe1.jpg"
-
+    name: "King Bed",
+    description: "Spacious bed frame with a modern headboard.",
+    price: 750,
+    category: "home",
+    image: "./assets/home/home5.jpg"
   },
   {
     id: 17,
-    name: "Vr",
-    description: "this is good product to use ",
-    price: 199,
-    catagory: "sports",
-    image: "./assets/sports/shoe1-1.jpg"
-
+    name: "Running Shoes",
+    description: "High-performance shoes with ultra-grip soles.",
+    price: 110,
+    category: "sports",
+    image: "./assets/sports/shoe1.jpg"
   },
-
-
-
+  {
+    id: 18,
+    name: "Pro Sneakers",
+    description: "Professional grade sneakers for athletic training.",
+    price: 135,
+    category: "sports",
+    image: "./assets/sports/shoe1-1.jpg"
+  }
 ];
+
+
 
 // Helper for Toast Notifications
 function showToast(message, type = 'success') {
@@ -206,7 +179,7 @@ function renderProducts() {
   container.innerHTML = '';
 
   let filtered = products.filter(p => {
-    const matchesCategory = currentCategory === 'all' || p.catagory === currentCategory;
+    const matchesCategory = currentCategory === 'all' || p.category === currentCategory;
     const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       p.description.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
@@ -231,7 +204,7 @@ function renderProducts() {
                 <img src="${product.image}" class="product-image" loading="lazy">
             </div>
             <div class="product-info">
-                <span class="product-category">${product.catagory}</span>
+                <span class="product-category">${product.category}</span>
                 <h2 class="product-name">${product.name}</h2>
                 <p class="product-description">${product.description}</p>
             </div>
@@ -254,32 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupEventListeners();
 });
 
-function setupEventListeners() {
-  // Search
-  const searchInput = document.getElementById('search-input');
-  searchInput.addEventListener('input', (e) => {
-    searchQuery = e.target.value;
-    renderProducts();
-  });
 
-  // Categories
-  const catButtons = document.querySelectorAll('.cat-btn');
-  catButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      catButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentCategory = btn.dataset.category;
-      renderProducts();
-    });
-  });
-
-  // Sorting
-  const sortSelect = document.getElementById('sort-select');
-  sortSelect.addEventListener('change', (e) => {
-    currentSort = e.target.value;
-    renderProducts();
-  });
-}
 
 function savetolocalstorage() {
   localStorage.setItem("cart", JSON.stringify(cart));
@@ -297,7 +245,21 @@ function addtocart(productid) {
 
   updatecartdisplay();
   savetolocalstorage();
-  showToast(`${product.name} added to cart!`);
+
+  // Show specialized success popup
+  const addPopup = document.getElementById('addSuccessPopup');
+  const itemName = document.getElementById('addedItemName');
+  if (itemName) itemName.textContent = product.name;
+  if (addPopup) addPopup.style.display = 'flex';
+}
+
+function closeAddPopup() {
+  document.getElementById('addSuccessPopup').style.display = 'none';
+}
+
+function viewCart() {
+  closeAddPopup();
+  document.getElementById("cart-sidebar").classList.add("active");
 }
 
 
@@ -340,91 +302,114 @@ function removefromcart(productid) {
   savetolocalstorage();
 }
 
-const cartopen = document.getElementById("cart-btn");
-const cartclose = document.getElementById("closes");
-cartopen.addEventListener("click", () => {
-  document.getElementById("cart-sidebar").classList.toggle("active");
-});
-cartclose.addEventListener("click", () => {
-  document.getElementById("cart-sidebar").classList.toggle("active");
-});
+// DOM Elements
+let paymentModal, closePaymentModal, checkoutBtn, successPopup;
 
-// responsive
-const menuopenbutton = document.getElementById("open");
-const menuclosebutton = document.getElementById("close");
+function setupEventListeners() {
+  // Menu IDs are checked to prevent null pointer errors
+  const cartBtn = document.getElementById("cart-btn");
+  const cartClose = document.getElementById("closes");
+  const menuToggle = document.getElementById("open");
+  const searchInput = document.getElementById('search-input');
+  const sortSelect = document.getElementById('sort-select');
+  const catButtons = document.querySelectorAll('.cat-btn');
 
-menuopenbutton.addEventListener("click", () => {
-  document.body.classList.toggle("show-mobile-menu");
-});
-menuclosebutton.addEventListener("click", () => {
-  document.body.classList.toggle("show-mobile-menu");
-});
+  // Payment Elements
+  paymentModal = document.getElementById('paymentModal');
+  closePaymentModal = document.getElementById('closePaymentModal');
+  checkoutBtn = document.getElementById('checkoutBtn');
+  successPopup = document.getElementById('successPopup');
+  const paymentForm = document.getElementById('paymentForm');
 
+  if (cartBtn) cartBtn.addEventListener("click", () => document.getElementById("cart-sidebar").classList.toggle("active"));
+  if (cartClose) cartClose.addEventListener("click", () => document.getElementById("cart-sidebar").classList.remove("active"));
 
-//payment
-const paymentModal = document.getElementById('paymentModal');
-const closePaymentModal = document.getElementById('closePaymentModal');
-const checkoutBtn = document.getElementById('checkoutBtn');
-const successPopup = document.getElementById('successPopup');
-
-
-checkoutBtn.addEventListener('click', () => {
-  paymentModal.style.display = 'flex';
-});
-
-
-closePaymentModal.addEventListener('click', () => {
-  paymentModal.style.display = 'none';
-});
-
-
-
-const paymentOptions = document.querySelectorAll('input[name="payment"]');
-const sections = {
-  credit: document.getElementById('credit-section'),
-  crypto: document.getElementById('crypto-section'),
-  paypal: document.getElementById('paypal-section')
-};
-
-paymentOptions.forEach(opt => {
-  opt.addEventListener('change', () => {
-    Object.values(sections).forEach(s => s.style.display = 'none');
-    const sel = opt.value;
-    if (sections[sel]) sections[sel].style.display = 'block';
-  });
-});
-
-document.getElementById('paymentForm').addEventListener('submit', (e) => {
-  e.preventDefault();
-  paymentModal.style.display = 'none';
-  successPopup.style.display = 'flex';
-  document.getElementById('paymentForm').reset();
-  Object.values(sections).forEach(s => s.style.display = 'none');
-});
-
-function closePopup() {
-  successPopup.style.display = 'none';
-}
-
-document.getElementById('paymentForm').addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  paymentModal.style.display = 'none';
-  successPopup.style.display = 'flex';
-
-  document.getElementById('paymentForm').reset();
-  Object.values(sections).forEach(s => s.style.display = 'none');
-
-
-  document.getElementById('cart-items').innerHTML = '';
-  document.getElementById('cart-count').textContent = '(0)';
-  document.getElementById('cart-total').textContent = '0.00';
-
-
-  if (typeof cart !== 'undefined') {
-    cart.length = 0;
+  if (menuToggle) {
+    menuToggle.addEventListener("click", () => document.body.classList.toggle("show-mobile-menu"));
   }
 
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderProducts();
+    });
+  }
 
-  localStorage.removeItem('cart');
-});
+  catButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      catButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCategory = btn.dataset.category;
+      renderProducts();
+      // Close mobile menu if open
+      document.body.classList.remove("show-mobile-menu");
+    });
+  });
+
+  if (sortSelect) {
+    sortSelect.addEventListener('change', (e) => {
+      currentSort = e.target.value;
+      renderProducts();
+    });
+  }
+
+  // Modal behavior
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+      if (cart.length === 0) {
+        showToast("Your cart is empty!", "info");
+        return;
+      }
+      document.getElementById("cart-sidebar").classList.remove("active");
+      paymentModal.style.display = 'flex';
+    });
+  }
+
+  if (closePaymentModal) {
+    closePaymentModal.addEventListener('click', () => {
+      paymentModal.style.display = 'none';
+    });
+  }
+
+  // Close modals on outside click
+  window.addEventListener('click', (e) => {
+    if (e.target === paymentModal) paymentModal.style.display = 'none';
+    if (e.target === document.getElementById('addSuccessPopup')) closeAddPopup();
+  });
+
+  const paymentOptions = document.querySelectorAll('input[name="payment"]');
+  const sections = {
+    credit: document.getElementById('credit-section'),
+    crypto: document.getElementById('crypto-section'),
+    paypal: document.getElementById('paypal-section')
+  };
+
+  paymentOptions.forEach(opt => {
+    opt.addEventListener('change', () => {
+      Object.values(sections).forEach(s => { if (s) s.style.display = 'none'; });
+      const sel = opt.value;
+      if (sections[sel]) sections[sel].style.display = 'block';
+    });
+  });
+
+  if (paymentForm) {
+    paymentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      paymentModal.style.display = 'none';
+      successPopup.style.display = 'flex';
+
+      // Comprehensive cleanup
+      paymentForm.reset();
+      Object.values(sections).forEach(s => { if (s) s.style.display = 'none'; });
+
+      cart = [];
+      savetolocalstorage();
+      updatecartdisplay();
+    });
+  }
+}
+
+function closePopup() {
+  if (successPopup) successPopup.style.display = 'none';
+  if (paymentModal) paymentModal.style.display = 'none';
+}
